@@ -1,5 +1,15 @@
+import { useState } from "react";
+import CommentForm from "./commentform";
 
 let Post =() => {
+    //manejo de estado de los likes
+    let[likes, setLike]=useState(0);
+    let updateLikes =()=>setLike(likes+1)
+    //manejo del boton de comentarios
+    let[btnComment, setBtnComment]=useState(false);
+    let isShowComment =() => setBtnComment(!btnComment);
+    console.log(btnComment);
+
     return(
             <div className="card" style={{"width": "18rem"}}>
             
@@ -10,12 +20,20 @@ let Post =() => {
             </div>
             <ul className="list-group list-group-flush">    
             <li className="list-group-item d-flex justify-content-around">
-                    <span>👌❤😥10mil</span><span>2mil🗨</span>
+                    <span>👌❤😥{likes}</span><span>2mil🗨</span>
             </li>
             <li className="list-group-item d-flex justify-content-around">
-                    <button className="btn btn-secondary">👌 Likes </button> <button className="btn btn-secondary">🗨 comment</button>
+                    <button className="btn btn-secondary"
+                        onClick={updateLikes}
+                    >👌 Likes </button> <button className="btn btn-secondary"
+                        onClick={isShowComment}
+                    >🗨 comment</button>
             </li>
-            </ul>     
+            </ul> 
+            <div className="card-footer">
+                {btnComment && <CommentForm/>}
+                
+            </div>        
         </div>
     );
 };
