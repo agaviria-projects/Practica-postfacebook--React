@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CommentForm from "./commentform";
+import ListComments from "./listcomments";
 
 let Post =() => {
     //manejo de estado de los likes
@@ -8,19 +9,28 @@ let Post =() => {
     //manejo del boton de comentarios
     let[btnComment, setBtnComment]=useState(false);
     let isShowComment =() => setBtnComment(!btnComment);
-    console.log(btnComment);
+    //console.log(btnComment);
+    //listados de comentarios
+    let listCom =[
+        {id:1, text:"Lo mejor los asados"},
+        {id:2, text:"con una buena compañia"}
+    ];
+    //funcion para obtener comentarios del formulario
+    let getCommentData =()=>{
 
+    }
+    
     return(
             <div className="card" style={{"width": "18rem"}}>
             
             <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 className="card-title">Sabor a brasas</h5>
+                <p className="card-text">No hay nada como una carne al fuego lento, rodeado de amigos y buenas historias. Así se vive el sabor real!.</p>
                 <img src={"https://www.tresjotas.com/wp-content/uploads/2018/03/saber-termino-de-la-carne.jpg"} className="card-img-top" alt="..."/>
             </div>
             <ul className="list-group list-group-flush">    
             <li className="list-group-item d-flex justify-content-around">
-                    <span>👌❤😥{likes}</span><span>2mil🗨</span>
+                    <span>👌❤😋{likes}</span><span>2mil🗨</span>
             </li>
             <li className="list-group-item d-flex justify-content-around">
                     <button className="btn btn-secondary"
@@ -31,9 +41,9 @@ let Post =() => {
             </li>
             </ul> 
             <div className="card-footer">
-                {btnComment && <CommentForm/>}
-                
+                {btnComment && <CommentForm getCommentData ={getCommentData}/>}     
             </div>        
+            <ListComments listComData ={listCom}/>
         </div>
     );
 };
