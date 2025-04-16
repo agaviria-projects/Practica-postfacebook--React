@@ -39,24 +39,34 @@ let Post =() => {
     //console.log(listCom);
     //console.log(listData)
     return(
-            <div className="card" style={{"width": "18rem"}}>
-            
-            <div className="card-body">
-                <h5 className="card-title">Sabor a brasas</h5>
-                <p className="card-text">No hay nada como una carne al fuego lento, rodeado de amigos y buenas historias. Así se vive el sabor real!.</p>
-                <img src={"https://www.tresjotas.com/wp-content/uploads/2018/03/saber-termino-de-la-carne.jpg"} className="card-img-top" alt="..."/>
+             <div className="card" style={{ width: "22rem", margin: "0 auto" }}>
+            <div className="card-header d-flex justify-content-between align-items-center">
+            <div className="d-flex align-items-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="parrilla" className="rounded-circle me-2" style={{ width: "40px", height: "40px" }} />
+                <div>
+                    <strong>El fogón de Alejandro Gaviria </strong><br />
+                    <small className="text-muted">18 h</small>
+                </div>
             </div>
-            <ul className="list-group list-group-flush">    
-            <li className="list-group-item d-flex justify-content-around">
-   
-                    <span>👌❤😋{likes}</span><span>{listData.length}🗨</span>
-            </li>
-            <li className="list-group-item d-flex justify-content-around">
-                    <button className="btn btn-secondary"
-                        onClick={updateLikes}
-                    >👌 Likes </button> <button className="btn btn-secondary"
-                        onClick={isShowComment}
-                    >🗨 comment</button>
+                <div style={{ fontSize: "1.2rem" }}>⋯</div>
+                </div>
+
+                <div className="card-body">
+                    <p className="card-text">No hay nada como una carne al fuego lento, rodeado de amigos y buenas historias. Así se vive el sabor real!.</p>
+                    <img src={"https://www.tresjotas.com/wp-content/uploads/2018/03/saber-termino-de-la-carne.jpg"} className="card-img-top rounded" alt="asado"/>
+                </div>
+            
+            <ul className="list-group list-group-flush"> 
+            <li className="list-group-item d-flex justify-content-between px-3">
+                <span>👌❤️😋{likes}</span>
+                <span>{listData.length} 🗨</span>
+            </li>       
+            <li className="list-group-item">
+                <div className="d-flex flex-wrap gap-2 justify-content-center">
+                    <button className="btn btn-secondary" onClick={updateLikes}>👌 Likes </button>
+                    <button className="btn btn-secondary" onClick={isShowComment}>🗨 comment</button>
+                    <button className="btn btn-secondary" onClick={() => alert("Post compartido")}>🔄 Compartir</button>
+                </div>
             </li>
             </ul> 
             <div className="card-footer">
