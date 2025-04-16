@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import CommentForm from "./commentform";
 import ListComments from "./listcomments";
 
@@ -10,16 +10,34 @@ let Post =() => {
     let[btnComment, setBtnComment]=useState(false);
     let isShowComment =() => setBtnComment(!btnComment);
     //console.log(btnComment);
-    //listados de comentarios
-    let listCom =[
+    //funcion para obtener comentarios del formulario
+    let [textComment,setTextComment] = useState("");
+    let getCommentData =(comment)=>{
+        setTextComment(comment);
+
+    }
+     //listados de comentarios
+     let initialComments = [
         {id:1, text:"Lo mejor los asados"},
         {id:2, text:"con una buena compañia"}
     ];
-    //funcion para obtener comentarios del formulario
-    let getCommentData =()=>{
+    let [listData, setListData] = useState(initialComments);
+    //permite que React “recuerde” el último ID usado y lo actualice con cada nuevo comentario
+    let [nextID, setNextID] = useState(3);
 
-    }
+    //comprobar si hay un nuevo comentario
+    useEffect(()=>{
+        if(textComment){
+            setListData([
+                ...listData,
+                {id:nextID,text: textComment}
+              ]);
+            setNextID(nextID + 1);  // acá se incrementa el ID  
+        }
+    },[textComment]);
     
+    //console.log(listCom);
+    //console.log(listData)
     return(
             <div className="card" style={{"width": "18rem"}}>
             
@@ -30,7 +48,8 @@ let Post =() => {
             </div>
             <ul className="list-group list-group-flush">    
             <li className="list-group-item d-flex justify-content-around">
-                    <span>👌❤😋{likes}</span><span>2mil🗨</span>
+   
+                    <span>👌❤😋{likes}</span><span>{listData.length}🗨</span>
             </li>
             <li className="list-group-item d-flex justify-content-around">
                     <button className="btn btn-secondary"
@@ -43,7 +62,7 @@ let Post =() => {
             <div className="card-footer">
                 {btnComment && <CommentForm getCommentData ={getCommentData}/>}     
             </div>        
-            <ListComments listComData ={listCom}/>
+            <ListComments listComData ={listData}/>
         </div>
     );
 };

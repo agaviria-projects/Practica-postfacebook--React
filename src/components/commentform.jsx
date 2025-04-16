@@ -15,7 +15,9 @@ let CommentForm =({getCommentData}) => {
             </textarea>
           
             <br />
-            <button className="btn btn-secondary">Comentar</button>
+            <button className="btn btn-secondary"
+                onClick={()=>getCommentData(comment)}
+            >Comentar</button>
         </section>
     );
 };
